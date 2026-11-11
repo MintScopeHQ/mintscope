@@ -173,5 +173,20 @@
   </footer>
 
 </div>
-</body>
+<script>
+  (function(){
+    try{
+      var clean=function(s){return (s||'').replace(/[^a-zA-Z0-9._-]/g,'').slice(0,32);};
+      var q=clean(new URLSearchParams(location.search).get('ref'));
+      if(q) localStorage.setItem('mscp_ref',q);
+      var ref=q||clean(localStorage.getItem('mscp_ref'));
+      if(ref){
+        var d=document.createElement('div');
+        d.style.cssText='text-align:center;color:#9fb0d8;font-size:13px;padding:0 20px 26px';
+        d.textContent='Referral applied: '+ref+' — it stays attached to this browser until minting opens.';
+        document.body.appendChild(d);
+      }
+    }catch(e){}
+  })();
+</script></body>
 </html>
